@@ -39,6 +39,9 @@ const transactionSchema = new Schema(
       ],
       default: 'Expense',
     },
+    balance: {
+      type: String,
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'user',
