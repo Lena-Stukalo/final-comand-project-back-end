@@ -8,7 +8,7 @@ const addTransaction = async (req, res) => {
 
   const result = await (
     await Transaction.create({ ...newTransaction, owner })
-  ).populate('owner', '_id');
+  ).populate('owner', 'email');
 
   res.status(201).json(result);
 };
