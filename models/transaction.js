@@ -3,6 +3,8 @@ const Joi = require('joi');
 const { handleSaveErrors } = require('../helpers');
 const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$/;
 const sumRegexp = /^\d+(\.\d+)*$/;
+const yearRegexp = /^[0-9]{4}$/;
+const monthRegexp = /^[0-9]{2}$/;
 
 const transactionSchema = new Schema(
   {
@@ -111,7 +113,20 @@ const addTransactionSchema = Joi.object({
     }),
 });
 
-const schemas = { addTransactionSchema };
+const getDetailedTransactionSchema = Joi.object({
+  year: Joi.string().pattern(yearRegexp).messages({
+    'string.base': 'Should be a type of string',
+    'string.empty': 'Must contain value',
+    'string.pattern.base': 'Year must contain four numbers',
+  }),
+  month: Joi.string().pattern(monthRegexp).messages({
+    'string.base': 'Should be a type of string',
+    'string.empty': 'Must contain value',
+    'string.pattern.base': 'Month must contain two numbers',
+  }),
+});
+
+const schemas = { addTransactionSchema, getDetailedTransactionSchema };
 
 module.exports = {
   Transaction,

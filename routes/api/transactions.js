@@ -13,9 +13,10 @@ router.post(
   ctrlWrapper(ctrl.addTransaction)
 );
 
-router.get(
+router.post(
   '/detailed',
   authenticate,
+  validateBody(schemas.getDetailedTransactionSchema),
   ctrlWrapper(ctrl.getDetailedTransactions)
 );
 
