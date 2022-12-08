@@ -13,4 +13,10 @@ router.post(
   ctrlWrapper(ctrl.addTransaction)
 );
 
+router.get(
+  '/detailed',
+  authenticate,
+  ctrlWrapper(ctrl.getDetailedTransactions)
+);
+
 module.exports = router;
