@@ -2,6 +2,9 @@ const { Schema, model } = require('mongoose');
 const Joi = require('joi');
 const { handleSaveErrors } = require('../helpers');
 const dateRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$/;
+const sumRegexp = /^\d+(\.\d+)*$/;
+const yearRegexp = /^[0-9]{4}$/;
+const monthRegexp = /^[0-9]{2}$/;
 
 const transactionSchema = new Schema(
   {
@@ -20,6 +23,7 @@ const transactionSchema = new Schema(
     sum: {
       type: String,
       required: [true, 'Sum is required'],
+      match: sumRegexp,
     },
     category: {
       type: String,
@@ -79,9 +83,11 @@ const addTransactionSchema = Joi.object({
   }),
 
   sum: Joi.string()
+    .pattern(sumRegexp)
     .messages({
       'string.base': 'Should be a type of string',
       'string.empty': 'Must contain value',
+      'string.pattern.base': 'Sum must contain only numbers and dot',
       'any.required': 'Sum is a required field',
     })
     .required(),
@@ -107,7 +113,20 @@ const addTransactionSchema = Joi.object({
     }),
 });
 
-const schemas = { addTransactionSchema };
+const getDetailedTransactionSchema = Joi.object({
+  year: Joi.string().pattern(yearRegexp).messages({
+    'string.base': 'Should be a type of string',
+    'string.empty': 'Must contain value',
+    'string.pattern.base': 'Year must contain four numbers',
+  }),
+  month: Joi.string().pattern(monthRegexp).messages({
+    'string.base': 'Should be a type of string',
+    'string.empty': 'Must contain value',
+    'string.pattern.base': 'Month must contain two numbers',
+  }),
+});
+
+const schemas = { addTransactionSchema, getDetailedTransactionSchema };
 
 module.exports = {
   Transaction,
