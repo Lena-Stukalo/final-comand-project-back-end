@@ -13,4 +13,11 @@ router.post(
   ctrlWrapper(ctrl.addTransaction)
 );
 
+router.post(
+  '/detailed',
+  authenticate,
+  validateBody(schemas.getDetailedTransactionSchema),
+  ctrlWrapper(ctrl.getDetailedTransactions)
+);
+
 module.exports = router;
