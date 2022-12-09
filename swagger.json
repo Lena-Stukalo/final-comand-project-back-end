@@ -324,6 +324,26 @@
             "type": "string",
             "description": "User's token",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTFkMWQzZDk5N2U3NmZjMzZmNTRmYiIsImlhdCI6MTY3MDUwMTA4OSwiZXhwIjoxNjcwNTg3NDg5fQ.U6Ber5P3H7AixEzBfsUQ2oHzYb-pZYH2T-9EjPwNJBg"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "Dimebag Darrell"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "balance": {
+                "type": "number",
+                "description": "User's balance",
+                "example": "12000"
+              }
+            }
           }
         }
       },
