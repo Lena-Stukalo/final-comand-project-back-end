@@ -6,6 +6,8 @@ const { ctrlWrapper } = require('../../helpers');
 
 const router = express.Router();
 
+router.get('/', authenticate, ctrlWrapper(ctrl.getAll));
+
 router.post(
   '/',
   authenticate,
@@ -19,5 +21,7 @@ router.post(
   validateBody(schemas.getDetailedTransactionSchema),
   ctrlWrapper(ctrl.getDetailedTransactions)
 );
+
+router.get('/categories', ctrlWrapper(ctrl.getAllCategories));
 
 module.exports = router;
