@@ -212,6 +212,42 @@
             "content": {}
           }
         }
+      },
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Get transactions",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": "true",
+            "type": "string",
+            "description": "The token issued to the current user."
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "Status Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionResponse"
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
       }
     },
     "/api/transactions/detailed": {
@@ -258,6 +294,25 @@
           "401": {
             "description": "Unauthorized",
             "content": {}
+          }
+        }
+      }
+    },
+    "/api/transactions/categories": {
+      "get": {
+        "tags": ["Transactions"],
+        "summary": "Get categories",
+
+        "responses": {
+          "200": {
+            "description": "Information found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCategories"
+                }
+              }
+            }
           }
         }
       }
@@ -427,6 +482,100 @@
           }
         }
       },
+      "GetTransactionResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "id of the transaction",
+              "example": "97381927313"
+            },
+            "date": {
+              "type": "string",
+              "description": "Transaction creation date",
+              "example": "20.08.1966"
+            },
+            "isIncome": {
+              "type": "boolean",
+              "description": "Type of transaction. If transaction type is 'Income' - isIncome: true, if 'Expense' - isIncome: false",
+              "example": false
+            },
+
+            "sum": {
+              "type": "string",
+              "description": "Sum of transaction",
+              "example": "2004"
+            },
+            "category": {
+              "type": "string",
+              "oneOf": [
+                "Expense",
+                "Income",
+                "Main expenses",
+                "Products",
+                "Car",
+                "Self care",
+                "Child care",
+                "Household products",
+                "Education",
+                "Leisure",
+                "Other expenses",
+                "Entertainment"
+              ],
+              "description": "Category of transaction",
+              "example": "Education"
+            },
+            "balance": {
+              "type": "string",
+              "description": "User's balance at the moment of creating transaction",
+              "example": "12000"
+            },
+            "owner": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "id of the user who created transaction",
+                  "example": "82y389738912"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "User name",
+                  "example": "Dimebag Darrell"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "email of the user who created transaction",
+                  "format": "email"
+                },
+                "balance": {
+                  "type": "number",
+                  "description": "Current user's balance",
+                  "example": 3000
+                }
+              }
+            },
+
+            "createdAt": {
+              "type": "string",
+              "description": "Time when transaction created",
+              "example": "2022-12-08T13:36:10.385Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "description": "Time when transaction updated",
+              "example": "2022-12-08T13:36:10.385Z"
+            },
+            "comment": {
+              "type": "string",
+              "description": "Transaction comment",
+              "example": "Хабар декану"
+            }
+          }
+        }
+      },
       "AddTransactionResponse": {
         "type": "object",
         "properties": {
@@ -571,6 +720,73 @@
               }
             ]
           }
+        }
+      },
+      "GetCategories": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Category id",
+                  "example": "1"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Category name",
+                  "example": "Education"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "categories": [
+            {
+              "id": "1",
+              "name": "Main expenses"
+            },
+            {
+              "id": "2",
+              "name": "Products"
+            },
+            {
+              "id": "3",
+              "name": "Car"
+            },
+            {
+              "id": "4",
+              "name": "Self care"
+            },
+            {
+              "id": "5",
+              "name": "Child care"
+            },
+            {
+              "id": "6",
+              "name": "Household products"
+            },
+            {
+              "id": "6",
+              "name": "Education"
+            },
+            {
+              "id": "7",
+              "name": "Leisure"
+            },
+            {
+              "id": "8",
+              "name": "Other expenses"
+            },
+            {
+              "id": "9",
+              "name": "Entertainment"
+            }
+          ]
         }
       }
     },
