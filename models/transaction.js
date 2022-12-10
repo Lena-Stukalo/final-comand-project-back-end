@@ -77,10 +77,7 @@ const addTransactionSchema = Joi.object({
     })
     .required(),
 
-  comment: Joi.string().messages({
-    'string.base': 'Should be a type of string',
-    'string.empty': 'Must contain value',
-  }),
+  comment: Joi.string().allow(''),
 
   sum: Joi.string()
     .pattern(sumRegexp)
