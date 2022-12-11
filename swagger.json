@@ -739,6 +739,11 @@
                   "type": "string",
                   "description": "Category name",
                   "example": "Education"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Color for diagram",
+                  "example": "#00AD84"
                 }
               }
             }
@@ -748,43 +753,48 @@
           "categories": [
             {
               "id": "1",
-              "name": "Main expenses"
+              "name": "Main expenses",
+              "color": "#FED057"
             },
             {
               "id": "2",
-              "name": "Products"
+              "name": "Products",
+              "color": "#FFD8D0"
             },
             {
               "id": "3",
-              "name": "Car"
+              "name": "Car",
+              "color": "#FD9498"
             },
             {
               "id": "4",
-              "name": "Self care"
+              "name": "Self care",
+              "color": "#C5BAFF"
             },
             {
               "id": "5",
-              "name": "Child care"
+              "name": "Child care",
+              "color": "#6E78E8"
             },
             {
               "id": "6",
-              "name": "Household products"
-            },
-            {
-              "id": "6",
-              "name": "Education"
+              "name": "Household products",
+              "color": "#4A56E2"
             },
             {
               "id": "7",
-              "name": "Leisure"
+              "name": "Education",
+              "color": "#81E1FF"
             },
             {
               "id": "8",
-              "name": "Other expenses"
+              "name": "Leisure",
+              "color": "#24CCA7"
             },
             {
               "id": "9",
-              "name": "Entertainment"
+              "name": "Other expenses",
+              "color": "#00AD84"
             }
           ]
         }
