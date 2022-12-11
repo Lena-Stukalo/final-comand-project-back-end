@@ -63,7 +63,7 @@ const addTransactionSchema = Joi.object({
     .pattern(dateRegexp)
     .messages({
       'string.base': 'Should be a type of string',
-      'string.empty': 'Must contain value',
+      'string.empty': 'date must contain value',
       'string.pattern.base': 'Must be in format "dd.mm.yyyy" ',
       'any.required': 'Date is a required field',
     })
@@ -72,7 +72,7 @@ const addTransactionSchema = Joi.object({
   isIncome: Joi.boolean()
     .messages({
       'boolean.base': 'isIncome should be a type of boolean',
-      'any.empty': 'Must contain value',
+      'any.empty': 'isIncome must contain value',
       'any.required': 'isIncome is a required field',
     })
     .required(),
@@ -83,7 +83,7 @@ const addTransactionSchema = Joi.object({
     .pattern(sumRegexp)
     .messages({
       'string.base': 'Should be a type of string',
-      'string.empty': 'Must contain value',
+      'string.empty': 'Sum must contain value',
       'string.pattern.base': 'Sum must contain only numbers and dot',
       'any.required': 'Sum is a required field',
     })
@@ -106,19 +106,19 @@ const addTransactionSchema = Joi.object({
     )
     .messages({
       'string.base': 'Should be a type of string',
-      'string.empty': 'Must contain value',
+      'string.empty': 'Category must contain value',
     }),
 });
 
 const getDetailedTransactionSchema = Joi.object({
   year: Joi.string().pattern(yearRegexp).messages({
     'string.base': 'Should be a type of string',
-    'string.empty': 'Must contain value',
+    'string.empty': 'Year must contain value',
     'string.pattern.base': 'Year must contain four numbers',
   }),
   month: Joi.string().pattern(monthRegexp).messages({
     'string.base': 'Should be a type of string',
-    'string.empty': 'Must contain value',
+    'string.empty': 'Month must contain value',
     'string.pattern.base': 'Month must contain two numbers',
   }),
 });
