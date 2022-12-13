@@ -41,7 +41,7 @@ const transactionSchema = new Schema(
         'Other expenses',
         'Entertainment',
       ],
-      default: 'Expense',
+      default: 'Other expenses',
     },
     balance: {
       type: String,
